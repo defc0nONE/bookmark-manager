@@ -1,5 +1,9 @@
 require 'sinatra'
 
-get '/' do
-  "Hello World"
+class BookmarkManager < Sinatra::Base
+
+  get '/' do
+    "Hello World"
+  end
+
 end
