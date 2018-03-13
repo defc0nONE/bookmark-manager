@@ -1,9 +1,9 @@
+require 'pg'
+
 class Link
   def self.all
-    [
-      "http://www.makersacademy.com",
-      "http://www.google.com",
-      "http://www.facebook.com"
-    ]
+    connection = PG.connect :dbname => 'bookmark_manager', :user => 'christopher'
+    result = connection.exec "SELECT url FROM links"
+    result.map { |link| link['url'] }
   end
 end
