@@ -14,12 +14,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/url' do
-    if params['new_url'] =~ /\A#{URI::regexp(['http', 'https'])}\z/
-      Link.add(url: params[:new_url])
-    else
-      flash[:notice] = "Invalid URL, not added! :-("
-    end
-
+    flash[:notice] = 'Invalid URL, not added! :-(' unless Link.add(url: params['new_url'])
     redirect '/'
   end
 

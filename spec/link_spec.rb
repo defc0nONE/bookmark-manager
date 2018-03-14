@@ -9,4 +9,12 @@ describe Link do
       expect(links).to include("http://www.facebook.com")
     end
   end
+
+  describe '.create' do
+    it 'doesn\'t create a new link if the URL isn\'t valid' do
+      Link.add(url: 'blah blah')
+
+      expect(Link.all).not_to include 'blah blah'
+    end
+  end
 end
