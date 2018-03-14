@@ -4,6 +4,8 @@ require 'pg'
 
 connection = PG.connect(dbname: 'bookmark_manager_test')
 
+p "Cleaning up any previous entries..."
+
 connection.exec("TRUNCATE links;")
 
 connection.exec("INSERT INTO links VALUES(1, 'http://www.makersacademy.com');")
