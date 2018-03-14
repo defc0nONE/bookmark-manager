@@ -1,17 +1,25 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require './database_connection_setup'
 require './lib/link'
-
+require 'uri'
 
 class BookmarkManager < Sinatra::Base
+  enable :sessions
+  register Sinatra::Flash
+
   get '/' do
     @links = Link.all
     erb :index
   end
 
   post '/url' do
-    Link.add(url: params[:new_url])
-    p params[:new_url]
+    if params['new_url'] =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      Link.add(url: params[:new_url])
+    else
+      flash[:notice] = "Invalid URL, not added! :-("
+    end
+
     redirect '/'
   end
 
