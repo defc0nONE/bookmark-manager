@@ -1,8 +1,11 @@
 require 'capybara'
 require 'capybara/rspec'
+require 'rake'
 require 'rspec'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
+
+Rake.application.load_rakefile
 
 Capybara.app = BookmarkManager
 
@@ -10,7 +13,7 @@ ENV['ENVIRONMENT'] = 'test'
 
 RSpec.configure do |config|
   config.before(:each) do
-    require_relative './test_database_setup'
+    Rake::Task['test_database_setup'].execute
   end
 end
 
