@@ -2,8 +2,7 @@
 
 <ul>
   <% @links.each do |link| %>
-    <li><%= link %></li>
-    <li><%= link.url %></li>
+    <li id="link-<%= link.id %>"><%= link.url %></li>
   <% end %>
 </ul>
 
