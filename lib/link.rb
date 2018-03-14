@@ -1,9 +1,15 @@
 require './lib/database_connection'
 
 class Link
+  attr_reader :url
+
+  def initialize(url)
+    @url = url
+  end
+
   def self.all
-    result = DatabaseConnection.query "SELECT url FROM links"
-    result.map { |link| link['url'] }
+    result = DatabaseConnection.query "SELECT * FROM links"
+    result.map { |link| Link.new(link['url']) }
   end
 
   def self.add(new_url)
