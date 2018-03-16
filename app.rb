@@ -19,6 +19,8 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/delete-link' do
+    Link.delete(params['id'])
+    redirect '/'
   end
 
   run! if app_file == $0

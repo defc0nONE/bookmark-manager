@@ -34,7 +34,7 @@ describe Link do
       links = Link.all
       urls = links.map(&:url)
 
-      expect(urls).not to include "http://www.makersacademy.com"
+      expect(urls).not_to include "http://www.makersacademy.com"
     end
   end
 end
