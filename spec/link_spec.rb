@@ -26,4 +26,15 @@ describe Link do
       expect(urls).not_to include 'blah blah'
     end
   end
+
+  describe '.delete' do
+    it 'deletes a link' do
+      Link.delete(1)
+
+      links = Link.all
+      urls = links.map(&:url)
+
+      expect(urls).not to include "http://www.makersacademy.com"
+    end
+  end
 end
